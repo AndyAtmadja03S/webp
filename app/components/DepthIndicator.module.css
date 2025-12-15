@@ -1,0 +1,8 @@
+.depthIndicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  color: #ffffff;
+  z-index: 3;
+}
