@@ -5,25 +5,88 @@ import * as THREE from 'three';
 import DepthIndicator from './DepthIndicator';
 import { projects } from '../data/projects';
 import styles from './HyperspacePortfolio.module.css';
+import ProjectCard from './ProjectCard';
 
 export default function HyperspacePortfolio() {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [currentDepth, setCurrentDepth] = useState(0);
   const maxDepth = projects.length - 1;
   
-  // Three.js refs
+  // refs
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const particlesRef = useRef<THREE.Points[]>([]);
-  const tunnelRingsRef = useRef<THREE.Line[]>([]);
+  const linesRef = useRef<THREE.Line[]>([]);
+
   const scrollMomentumRef = useRef(0);
   const targetCameraZRef = useRef(5);
   const animationIdRef = useRef<number>();
+
   const isHyperJump = useRef(false);
   const hyperjumpProgressRef = useRef(0);
+  const hyperjumpTimeoutRef = useRef<number | null>(null);
 
-  function createCircleTexture() {
+  const lines = (scene: THREE.Scene) => {
+    for (let i = 0; i < 200; i++) {
+      const points = [];
+      const angle = (i / 200) * Math.PI * 10;
+      const radius = 5 + Math.random() * 10;
+      const startZ = -Math.random() * 100;
+
+      points.push(
+        new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, startZ),
+        new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, startZ - 2)
+      );
+
+      const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+      const lineMaterial = new THREE.LineBasicMaterial();
+
+      const line = new THREE.Line(lineGeometry, lineMaterial);
+      line.userData.angle = angle;
+      line.userData.radius = radius;
+      line.userData.speed = 0.05 + Math.random() * 1;
+
+      linesRef.current.push(line);
+      scene.add(line);
+    }
+  };
+
+  const circles = (scene: THREE.Scene) => {
+    const particleGeometry = new THREE.BufferGeometry();
+    const particleCount = 1500;
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      const i3 = i * 3;
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.random() * 20 + 2;
+      const z = Math.random() * 100 - 50;
+
+      positions[i3] = Math.cos(angle) * radius;
+      positions[i3 + 1] = Math.sin(angle) * radius;
+      positions[i3 + 2] = z;
+    }
+
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.15,
+      map: circletexture(),
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+
+    const particle = new THREE.Points(particleGeometry, particleMaterial);
+    particlesRef.current.push(particle);
+    scene.add(particle);
+  };
+
+  function circletexture() {
     const size = 64;
     const canvas = document.createElement('canvas');
     canvas.width = size;
@@ -87,23 +150,37 @@ export default function HyperspacePortfolio() {
 
       if (isHyperJump.current) return;
 
-      // Trigger one hyperjump
       isHyperJump.current = true;
       hyperjumpProgressRef.current = 0;
+
+      // clear old timeout if any
+      if (hyperjumpTimeoutRef.current) {
+        clearTimeout(hyperjumpTimeoutRef.current);
+      }
+
+      hyperjumpTimeoutRef.current = window.setTimeout(() => {
+        isHyperJump.current = false;
+        hyperjumpProgressRef.current = 0;
+        scrollMomentumRef.current = 0;
+        cameraRef.current!.position.z = 20;
+      }, 10); 
     };
+
     
     window.addEventListener('wheel', handleScroll, { passive: false });
 
     // Animation loop
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
-
       camera.position.z += (targetCameraZRef.current - camera.position.z) * 0.5;
 
-      // Animate hyperspace lines
-      tunnelRingsRef.current.forEach(line => {
+      // lines animation
+      linesRef.current.forEach(line => {
         const positions = line.geometry.attributes.position.array as Float32Array;
+        console.log(line.userData.speed)
         const speed = line.userData.speed + Math.abs(scrollMomentumRef.current) * 20;
+
+        const warp = scrollMomentumRef.current;
         
         positions[2] += speed;
         positions[5] += speed;
@@ -116,63 +193,37 @@ export default function HyperspacePortfolio() {
           positions[2] = -100;
           positions[3] = positions[0];
           positions[4] = positions[1];
-          positions[5] = -102;
-        }
-
-        const distance = Math.abs(positions[2] - camera.position.z);
-        if (distance < 15) {
-          (line.material as THREE.LineBasicMaterial).opacity = Math.min(0.9, (15 - distance) / 15);
-        } else {
-          (line.material as THREE.LineBasicMaterial).opacity = 0.3;
+          positions[5] = -105;
         }
 
         line.geometry.attributes.position.needsUpdate = true;
       });
 
-      // Animate particles
-      particlesRef.current.forEach(particleSystem => {
-        const positions = particleSystem.geometry.attributes.position.array as Float32Array;
+      // particle animation
+      particlesRef.current.forEach(particle => {
+        const positions = particle.geometry.attributes.position.array as Float32Array;
 
+        // i = x, i+1 = y, i+2 = z
         for (let i = 0; i < positions.length; i += 3) {
-          positions[i + 2] += 0.3 + Math.abs(scrollMomentumRef.current) * 15;
-
-          const distance = Math.sqrt(positions[i] * positions[i] + positions[i + 1] * positions[i + 1]);
-          if (distance > 0) {
-            const expansion = 1 + Math.abs(scrollMomentumRef.current) * 0.01;
-            positions[i] *= expansion;
-            positions[i + 1] *= expansion;
-          }
-
+          // moves particle toward camera
+          positions[i + 2] += 0.1 + Math.abs(scrollMomentumRef.current) * 15;
+          
+          // Re-randomizes particle around a ring
+          // Keeps tunnel cylindrical
           if (positions[i + 2] > 10) {
             positions[i + 2] = -50;
             const resetAngle = Math.random() * Math.PI * 2;
-            const resetRadius = Math.random() * 20 + 2;
+            const resetRadius = Math.random() * 8 + 2;
             positions[i] = Math.cos(resetAngle) * resetRadius;
             positions[i + 1] = Math.sin(resetAngle) * resetRadius;
           }
         }
-
-        particleSystem.geometry.attributes.position.needsUpdate = true;
+        particle.geometry.attributes.position.needsUpdate = true;
       });
 
       if (isHyperJump.current) {
-        hyperjumpProgressRef.current += 0.01;
-
-        const t = hyperjumpProgressRef.current;
-        console.log(t)
-        // Smooth bell curve
-        const warpStrength = Math.sin(Math.PI * t);
+        const warpStrength = Math.sin(Math.PI * Math.min(0.02, 0.5));
         scrollMomentumRef.current = warpStrength;
-
-        // Camera punch
-        camera.position.z = 20 - warpStrength * 0;
-
-        if (t >= 1) {
-          isHyperJump.current = false;
-          hyperjumpProgressRef.current = 0;
-          scrollMomentumRef.current = 0;
-          camera.position.z = 20;
-        }
       }
       renderer.render(scene, camera);
     };
@@ -195,69 +246,11 @@ export default function HyperspacePortfolio() {
     };
   }, [currentDepth, maxDepth]);
 
-  const lines = (scene: THREE.Scene) => {
-    for (let i = 0; i < 200; i++) {
-      const points = [];
-      const angle = (i / 200) * Math.PI * 10;
-      const radius = 5 + Math.random() * 10;
-      const startZ = -Math.random() * 100;
-
-      points.push(
-        new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, startZ),
-        new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius, startZ - 2)
-      );
-
-      const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-      const lineMaterial = new THREE.LineBasicMaterial();
-
-      const line = new THREE.Line(lineGeometry, lineMaterial);
-      line.userData.angle = angle;
-      line.userData.radius = radius;
-      line.userData.speed = 0.5 + Math.random() * 1;
-
-      tunnelRingsRef.current.push(line);
-      scene.add(line);
-    }
-  };
-
-  const circles = (scene: THREE.Scene) => {
-    const particleGeometry = new THREE.BufferGeometry();
-    const particleCount = 1500;
-    const positions = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-      const angle = Math.random() * Math.PI * 2;
-      const radius = Math.random() * 20 + 2;
-      const z = Math.random() * 100 - 50;
-
-      positions[i3] = Math.cos(angle) * radius;
-      positions[i3 + 1] = Math.sin(angle) * radius;
-      positions[i3 + 2] = z;
-    }
-
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.15,
-      map: createCircleTexture(),   // 👈 circle sprite
-      transparent: true,
-      opacity: 0.9,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-
-    const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
-    particlesRef.current.push(particleSystem);
-    scene.add(particleSystem);
-  };
-
   return (
     <>
       <div ref={canvasRef} className={styles.container} />
       
-      {/* <div className={styles.projectsContainer}>
+      <div className={styles.projectsContainer}>
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
@@ -265,7 +258,7 @@ export default function HyperspacePortfolio() {
             isVisible={index === currentDepth}
           />
         ))}
-      </div> */}
+      </div>
       <DepthIndicator currentDepth={currentDepth} maxDepth={maxDepth} />
     </>
   );
