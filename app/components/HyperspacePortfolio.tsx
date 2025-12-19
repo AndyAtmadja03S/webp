@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { projects } from '../data/projects';
 import styles from './HyperspacePortfolio.module.css';
+import ProjectCard from './ProjectCard';
 
 export default function HyperspacePortfolio() {
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -279,15 +280,14 @@ export default function HyperspacePortfolio() {
       <div className={styles.fpsCounter}>
         {fps} FPS
       </div>
-      {/* <div className={styles.projectsContainer}>
+      <div className={styles.container}>
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
             project={project}
-            isVisible={index === currentDepth}
           />
         ))}
-      </div> */}
+      </div>
     </>
   );
 }
