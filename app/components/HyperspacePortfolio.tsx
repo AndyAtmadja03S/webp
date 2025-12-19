@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import DepthIndicator from './DepthIndicator';
 import { projects } from '../data/projects';
 import styles from './HyperspacePortfolio.module.css';
 import ProjectCard from './ProjectCard';
@@ -13,6 +12,14 @@ export default function HyperspacePortfolio() {
   const maxDepth = projects.length - 1;
   
   // refs
+
+  const fpsRef = useRef(0);
+  const lastTimeRef = useRef(performance.now());
+  const frameCountRef = useRef(0);
+
+  const [fps, setFps] = useState(0);
+
+
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
 
@@ -169,9 +176,30 @@ export default function HyperspacePortfolio() {
     
     window.addEventListener('wheel', handleScroll, { passive: false });
 
+    const now = performance.now();
+    frameCountRef.current++;
+
+    if (now - lastTimeRef.current >= 1000) {
+      fpsRef.current = frameCountRef.current;
+      setFps(fpsRef.current);
+
+      frameCountRef.current = 0;
+      lastTimeRef.current = now;
+    }
+
     // Animation loop
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
+
+      const now = performance.now();
+      frameCountRef.current++;
+
+      if (now - lastTimeRef.current >= 1000) {
+        setFps(frameCountRef.current);
+        frameCountRef.current = 0;
+        lastTimeRef.current = now;
+      }
+     
       camera.position.z += (targetCameraZRef.current - camera.position.z) * 0.5;
 
       // lines animation
@@ -249,17 +277,17 @@ export default function HyperspacePortfolio() {
   return (
     <>
       <div ref={canvasRef} className={styles.container} />
-      
-      <div className={styles.projectsContainer}>
+      <div className={styles.fpsCounter}>
+        {fps} FPS
+      </div>
+      <div className={styles.container}>
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
             project={project}
-            isVisible={index === currentDepth}
           />
         ))}
       </div>
-      <DepthIndicator currentDepth={currentDepth} maxDepth={maxDepth} />
     </>
   );
 }
