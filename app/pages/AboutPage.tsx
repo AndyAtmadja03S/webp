@@ -14,14 +14,9 @@ export default function About() {
         
         <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
           <p>
-            I'm a designer and developer based in San Francisco, passionate about creating 
-            intuitive digital experiences that solve real problems. With 5+ years of experience, 
-            I bridge the gap between design and development.
-          </p>
-          
-          <p>
-            Currently, I work with startups and established companies to bring their ideas to life, 
-            focusing on clean design, smooth interactions, and thoughtful user experiences.
+            Hi, I'm a Computer Science student based in Sydney, Australia. I'm passionate 
+            about building stuff that can actually be used in current modern day problems.
+            Outside of building, I love playing sports like soccer, basketball, and padel.
           </p>
         </div>
       </div>
