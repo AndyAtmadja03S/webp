@@ -10,15 +10,12 @@ import WorkPage from "./pages/WorkPage";
 export default function Home() {
   return (
     <div>
-      <NavBar>
-
-      </NavBar>
-      <HeroPage></HeroPage>
+      <NavBar />
+      <HeroPage/ >
       <AboutPage/>
-      <WorkPage></WorkPage>
-      <SkillsPage></SkillsPage>
-      <ContactPage></ContactPage>
-
+      <WorkPage/ >
+      <SkillsPage />
+      <ContactPage />
     </div>
   );
 }

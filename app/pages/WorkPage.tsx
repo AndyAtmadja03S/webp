@@ -42,70 +42,31 @@ export default function Work() {
           Selected Work
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project}/>
           ))}
         </div>
       </div>
     </section>
-    
   )
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <div
-      className="group cursor-pointer transition-transform duration-300 hover:-translate-y-3"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="relative w-full aspect-4/3 mb-6">
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-10"
-          viewBox="0 0 400 470"
-          fill="none"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 40 0 
-               L 360 0 
-               Q 400 0 400 40 
-               L 400 420 
-               L 350 470 
-               L 300 470 
-               L 40 470 
-               Q 0 470 0 430 
-               L 0 40 
-               Q 0 0 40 0 Z"
-            stroke={isHovered ? '#a3e635' : '#525252'}
-            strokeWidth="2"
-            fill="none"
-            className="transition-colors duration-300"
-          />
-        </svg>
-        <div
-          className={`absolute inset-0 bg-linear-to-br ${project.gradient}
-          flex items-center justify-center text-6xl
-          transition-all duration-300
-          ${isHovered ? "scale-[0.98]" : ""}
-        `}
-          style={{
-            clipPath: `path('M 40 0 L 360 0 Q 400 0 400 40 L 400 420 L 350 470 L 300 470 L 40 470 Q 0 470 0 430 L 0 40 Q 0 0 40 0 Z')`
-          }}
-        >
-          {project.icon}
-        </div>
+    <div className="group cursor-pointer">
+      <div
+        className="relative w-full h-[450px] rounded-2xl overflow-hidden 
+        shadow-md transition-all duration-300 
+        group-hover:-translate-y-2 group-hover:shadow-xl"
+      >
       </div>
-
-      <h3 className="text-2xl font-medium mb-2">
+      <h3 className="text-2xl font-medium mt-6 mb-2">
         {project.title}
       </h3>
       <p className="text-gray-600">
         {project.description}
       </p>
     </div>
-  )
+  );
 }

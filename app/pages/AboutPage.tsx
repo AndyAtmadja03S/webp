@@ -4,7 +4,7 @@ import GitHubSection from "./sections/GithubSection"
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-6 bg-white">
+    <section id="about" className="py-16 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">
           About
@@ -14,7 +14,7 @@ export default function About() {
           Building meaningful products through design & code
         </h2>
         
-        <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-6">
+        <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-12">
           <p>
             Hi, I'm a Computer Science student based in Sydney, Australia. I'm passionate 
             about building stuff that can actually be used in current modern day problems.
