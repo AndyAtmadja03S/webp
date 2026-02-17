@@ -30,6 +30,7 @@ export default function ProjectCard({
       <div className="relative">
         {/* SVG custom border */}
         <svg
+        
           className="absolute inset-0 w-full h-full pointer-events-none"
           viewBox="0 0 400 400"
           fill="none"
