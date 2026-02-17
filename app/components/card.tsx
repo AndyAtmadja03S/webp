@@ -30,7 +30,7 @@ export default function ProjectCard({
       <div className="relative">
         {/* SVG custom border */}
         <svg
-        
+
           className="absolute inset-0 w-full h-full pointer-events-none"
           viewBox="0 0 400 400"
           fill="none"
@@ -131,6 +131,7 @@ export default function ProjectCard({
 
       {/* Hover effect - glow */}
       <div
+      
         className={`absolute inset-0 -z-10 blur-2xl transition-opacity duration-500 ${
           isHovered ? 'opacity-30' : 'opacity-0'
         }`}
