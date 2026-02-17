@@ -18,7 +18,7 @@ export default function Hero() {
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          Alex Morgan
+          Andy Atmadja
         </h1>
         
         <p 
@@ -26,7 +26,7 @@ export default function Hero() {
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          Designer & Developer crafting digital experiences
+          Computer Science Student
         </p>
         
         <Link
@@ -36,11 +36,10 @@ export default function Hero() {
           }`}
           style={{ transitionDelay: '400ms' }}
         >
-          View My Work
+          View My Projects
         </Link>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
         <svg
           className="w-6 h-6 text-gray-400"
