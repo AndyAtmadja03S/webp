@@ -54,7 +54,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        className="hidden md:block md:absolute bottom-12 left-1/2 -translate-x-1/2"
         style={{
           animation: 'bounce 0.8s infinite',
         }}
