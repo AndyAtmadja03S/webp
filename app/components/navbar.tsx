@@ -4,10 +4,10 @@ import MenuIcon from "./icons/MenuIcon";
 
 export default function NavBar() {
   const navItemClass =
-    "text-md text-gray-700 hover:text-black transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
+    "text-md text-gray-700 hover:text-black transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md z-50"
 
   return (
-    <nav className="fixed top-0 w-full transition-all duration-300 py-6 bg-white/80 backdrop-blur-md">
+    <div className="fixed top-0 w-full z-50 transition-all duration-300 py-6 bg-white/80 backdrop-blur-md">
       <div className="mx-auto px-6 flex flex-row justify-between items-center">
         
         <div
@@ -33,6 +33,6 @@ export default function NavBar() {
         </button>
 
       </div>
-    </nav>
+    </div>
   );
 }

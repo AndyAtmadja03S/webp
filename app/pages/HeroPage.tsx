@@ -11,7 +11,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative h-screen flex items-center justify-center px-6">
+    <section className="relative h-screen flex items-center justify-center px-6 pt-20">
       <div className="max-w-8xl mx-auto flex flex-col md:flex-row items-center gap-12">
 
         <div
