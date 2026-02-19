@@ -12,35 +12,53 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        <h1 
-          className={`text-7xl md:text-8xl lg:text-9xl font-light tracking-tight mb-6 transition-all duration-1000 ${
+      <div className="max-w-8xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+        <div
+          className={`transition-all duration-1000 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          Andy Atmadja
-        </h1>
-        
-        <p 
-          className={`text-xl md:text-2xl lg:text-3xl text-gray-600 mb-12 transition-all duration-1000 delay-200 ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          Computer Science Student
-        </p>
-        
-        <Link
-          href="#work"
-          className={`inline-block px-10 py-4 bg-black text-white rounded-full text-sm tracking-wide hover:scale-105 hover:shadow-2xl transition-all duration-300 ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-          style={{ transitionDelay: '400ms' }}
-        >
-          View My Projects
-        </Link>
+          <img
+            src="/avatar.jpg"
+            className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover shadow-2xl"
+          />
+        </div>
+
+        <div className="text-center md:text-left">
+          <h1 
+            className={`text-6xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 transition-all duration-1000 ${
+              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            Andy Atmadja
+          </h1>
+          
+          <p 
+            className={`text-xl md:text-2xl lg:text-3xl text-gray-600 mb-12 transition-all duration-1000 delay-200 ${
+              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            Computer Science Student
+          </p>
+          
+          <Link
+            href="#work"
+            className={`inline-block px-10 py-4 bg-black text-white rounded-full text-sm tracking-wide hover:scale-105 hover:shadow-2xl transition-all duration-300 ${
+              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            View My Projects
+          </Link>
+        </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+      <div
+        className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        style={{
+          animation: 'bounce 0.8s infinite',
+        }}
+      >
         <svg
           className="w-6 h-6 text-gray-400"
           fill="none"
