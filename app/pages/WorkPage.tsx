@@ -6,31 +6,23 @@ interface Project {
   id: number
   title: string
   description: string
-  icon: string
-  gradient: string
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Brand Redesign',
-    description: 'Complete visual identity refresh for a tech startup',
-    icon: '🎨',
-    gradient: 'from-purple-500 to-indigo-600',
+    title: 'Spotz',
+    description: 'UNSW Campus Spots Finder',
   },
   {
     id: 2,
-    title: 'Mobile App',
-    description: 'iOS app design and development for fitness tracking',
-    icon: '📱',
-    gradient: 'from-pink-500 to-rose-600',
+    title: 'When2Eat',
+    description: 'Timetable Scheduling for Eats around campus',
   },
   {
     id: 3,
-    title: 'E-commerce Platform',
-    description: 'Full-stack development of a modern shopping experience',
-    icon: '🌐',
-    gradient: 'from-cyan-500 to-blue-600',
+    title: 'Cotangles',
+    description: 'Social timetabling UNSW timetable planner',
   },
 ]
 

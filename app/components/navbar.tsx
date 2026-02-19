@@ -10,7 +10,7 @@ export default function NavBar() {
       <div className="mx-auto px-6 flex flex-row justify-between items-center">
         <div>
           <p className="text-xl font-semibold tracking-tight">
-            A.M
+            A.A
           </p>
         </div>
         
