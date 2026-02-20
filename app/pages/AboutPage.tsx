@@ -1,6 +1,7 @@
 'use client'
 
 import GitHubSection from "./sections/GithubSection"
+import LeetcodeSection from "./sections/LeetcodeSection"
 
 export default function About() {
   return (
@@ -21,8 +22,12 @@ export default function About() {
             Outside of building, I love playing sports like soccer, basketball, and padel.
           </p>
         </div>
-        <GitHubSection>
-        </GitHubSection>
+        <div>
+          <GitHubSection>
+          </GitHubSection>
+          <LeetcodeSection></LeetcodeSection>
+        </div>
+        
       </div>
     </section>
   )
