@@ -8,10 +8,9 @@ interface ContactLink {
 }
 
 const contactLinks: ContactLink[] = [
-  { label: 'Email', href: 'mailto:hello@alexmorgan.com' },
-  { label: 'Twitter', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'GitHub', href: '#' },
+  { label: 'Email', href: 'atmandy345@gmail.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/feed/' },
+  { label: 'GitHub', href: 'https://github.com/AndyAtmadja03S' },
 ]
 
 export default function Contact() {
@@ -23,7 +22,7 @@ export default function Contact() {
         </h2>
         
         <p className="text-xl text-gray-400 mb-12">
-          I'm always interested in hearing about new projects and opportunities.
+          Interested in any opportunites, contacts below
         </p>
         
         <div className="flex flex-wrap justify-center gap-8">
@@ -31,7 +30,7 @@ export default function Contact() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-lg hover:text-purple-400 transition-colors duration-300"
+              className="text-lg hover:font-bold hover:text-white transition-colors duration-300"
             >
               {link.label}
             </Link>
