@@ -114,7 +114,7 @@ export default function LeetcodeSection() {
   return (
     <div className="flex flex-col items-center gap-6">
       <p className="font-bold text-3xl">
-        Leetcodes
+        Leetcode
       </p>
       <div className="relative w-[200px] h-[200px]">
         <svg width="200" height="200" viewBox="0 0 200 200">
