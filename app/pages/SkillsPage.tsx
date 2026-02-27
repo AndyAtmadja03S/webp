@@ -7,16 +7,20 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: 'Design',
-    skills: ['UI/UX Design', 'Figma & Sketch', 'Prototyping', 'Design Systems'],
+    title: 'Languages',
+    skills: ['C', 'Javascript', 'Typescript', 'Python', 'PHP', 'HTML5', 'CSS3'],
   },
   {
-    title: 'Development',
-    skills: ['React & Next.js', 'JavaScript/TypeScript', 'Node.js', 'Tailwind CSS'],
+    title: 'Frameworks',
+    skills: ['Next.js', 'React.js', 'React Native', 'Tailwind CSS', 'Slim', 'Laravel', 'tRPC'],
   },
   {
-    title: 'Other',
-    skills: ['Git & GitHub', 'Responsive Design', 'API Integration', 'Agile Workflow'],
+    title: 'Databases',
+    skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'Firebase', 'Supabase', 'Prisma ORM'],
+  },
+  {
+    title: 'Tools & Platforms',
+    skills: ['Docker', 'Git', 'Github Actions', 'Vercel', 'Figma'],
   },
 ]
 
@@ -28,7 +32,7 @@ export default function Skills() {
           Skills & Tools
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {skillCategories.map((category) => (
             <SkillCategory key={category.title} category={category} />
           ))}

@@ -22,7 +22,7 @@ export default function About() {
             Outside of building, I love playing sports like soccer, basketball, and padel.
           </p>
         </div>
-        <div>
+        <div className="flex md:flex-row flex-col justify-center items-center gap-10 mt-20">
           <GitHubSection>
           </GitHubSection>
           <LeetcodeSection></LeetcodeSection>
