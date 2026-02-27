@@ -69,7 +69,6 @@ export default function Hero() {
           transition-all duration-1000 delay-[1000ms]
           ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}
-        style={{ animation: 'bounce 1s infinite' }}
       >
         <Arrow className="w-6 h-6 text-gray-400" />
       </div>
