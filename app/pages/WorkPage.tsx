@@ -28,7 +28,7 @@ const projects: Project[] = [
 
 export default function Work() {
   return (
-    <section id="work" className="py-32 px-6 bg-neutral-50">
+    <div id="work" className="py-32 px-6 bg-neutral-50">
       <div className="max-w-7xl mx-auto">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-12">
           Selected Work
@@ -40,7 +40,7 @@ export default function Work() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

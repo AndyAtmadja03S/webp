@@ -128,7 +128,7 @@ export default function LeetcodeSection() {
         ))}
       </div>
 
-      {/* Acceptance rate */}
+      {/* Acceptance rate
       <div style={{ color: "#555", fontSize: 11, textAlign: "center" }}>
         Acceptance rate:{" "}
         <span style={{ color: "#888" }}>
@@ -137,7 +137,7 @@ export default function LeetcodeSection() {
               (data.submitStats.totalSubmissionNum.find(s => s.difficulty === "All")?.count ?? 1) * 100).toFixed(1)}%`
             : "—"}
         </span>
-      </div>
+      </div> */}
     </div>
   )
 }
