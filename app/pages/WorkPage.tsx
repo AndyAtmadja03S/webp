@@ -7,6 +7,7 @@ interface Project {
   title: string
   description: string
   link: string
+  img: string
 }
 
 const projects: Project[] = [
@@ -15,18 +16,21 @@ const projects: Project[] = [
     title: 'Spotz',
     description: 'UNSW Campus Spots Finder',
     link: 'https://trainee-dragon-25t1.vercel.app/',
+    img: 'https://trainee-dragon-25t1.vercel.app/spotz.svg'
   },
   {
     id: 2,
     title: 'When2Eat',
     description: 'Timetable Scheduling for Eats around campus',
     link: 'https://github.com/AndyAtmadja03S/trainee-giants-25t2',
+    img: '/when2eat.png'
   },
   {
     id: 3,
     title: 'Cotangles',
     description: 'Social timetabling UNSW timetable planner',
     link: 'https://cotangles.onrender.com/',
+    img: 'https://cotangles.onrender.com/cotangles_logo.png'
   },
 ]
 
@@ -55,8 +59,14 @@ function ProjectCard({ project }: { project: Project }) {
         <div
           className="relative w-full h-112.5 rounded-2xl overflow-hidden 
           shadow-md transition-all duration-300 
-          group-hover:-translate-y-2 group-hover:shadow-xl"
+          group-hover:-translate-y-2 group-hover:shadow-xl
+          bg-white flex items-center justify-center"
         >
+          <img
+            src={project.img}
+            alt={project.title}
+            className="w-32 h-32 object-contain"
+          />
         </div>
 
         <h3 className="text-2xl font-medium mt-6 mb-2">
