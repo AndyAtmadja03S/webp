@@ -5,7 +5,7 @@ import LeetcodeSection from "./sections/LeetcodeSection"
 
 export default function About() {
   return (
-    <section id="about" className="py-16 px-6 bg-white">
+    <div id="about" className="py-16 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">
           About
@@ -23,12 +23,11 @@ export default function About() {
           </p>
         </div>
         <div className="flex md:flex-row flex-col justify-center items-center gap-10 mt-20">
-          <GitHubSection>
-          </GitHubSection>
-          <LeetcodeSection></LeetcodeSection>
+          <GitHubSection />
+          <LeetcodeSection />
         </div>
         
       </div>
-    </section>
+    </div>
   )
 }

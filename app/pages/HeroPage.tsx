@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import Arrow from '../components/icons/ArrowIcon'
 
 export default function Hero() {
@@ -66,7 +65,7 @@ export default function Hero() {
 
       <div
         className={`hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2
-          transition-all duration-1000 delay-[1000ms]
+          transition-all duration-1000 delay-1000
           ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}
       >

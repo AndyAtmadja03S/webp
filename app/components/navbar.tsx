@@ -26,7 +26,7 @@ export default function NavBar() {
         
         <div className="hidden md:flex gap-8">
           <div onClick={() => scrollToSection('about')} className={navItemClass}>About</div>
-          <div onClick={() => scrollToSection('work')} className={navItemClass}>Work</div>
+          <div onClick={() => scrollToSection('work')} className={navItemClass}>Projects</div>
           <div onClick={() => scrollToSection('skills')} className={navItemClass}>Skills</div>
           <div onClick={() => scrollToSection('contact')} className={navItemClass}>Contact</div>
         </div>
