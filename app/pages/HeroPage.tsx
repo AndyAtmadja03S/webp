@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import Arrow from '../components/icons/ArrowIcon'
 
 export default function Hero() {
@@ -12,7 +11,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="h-screen flex items-center justify-center px-6 pt-20">
+    <div className="h-screen flex items-center justify-center px-6 pt-16">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
 
         <div
@@ -20,10 +19,6 @@ export default function Hero() {
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <img
-            src="/avatar.jpg"
-            className="w-60 h-60 rounded-full object-cover shadow-2xl"
-          />
         </div>
 
         <div className="text-center md:text-left">
@@ -66,7 +61,7 @@ export default function Hero() {
 
       <div
         className={`hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2
-          transition-all duration-1000 delay-[1000ms]
+          transition-all duration-1000 delay-1000
           ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}
       >
