@@ -8,6 +8,7 @@ interface Project {
   description: string
   link: string
   img: string
+  bg: string
 }
 
 const projects: Project[] = [
@@ -16,21 +17,24 @@ const projects: Project[] = [
     title: 'Spotz',
     description: 'UNSW Campus Spots Finder',
     link: 'https://trainee-dragon-25t1.vercel.app/',
-    img: 'https://trainee-dragon-25t1.vercel.app/spotz.svg'
+    img: 'https://trainee-dragon-25t1.vercel.app/spotz.svg',
+    bg: '/spotzz.png'
   },
   {
     id: 2,
     title: 'When2Eat',
     description: 'Timetable Scheduling for Eats around campus',
     link: 'https://github.com/AndyAtmadja03S/trainee-giants-25t2',
-    img: '/when2eat.png'
+    img: '/when2eat.png',
+    bg: '/when2eatf.png'
   },
   {
     id: 3,
     title: 'Cotangles',
     description: 'Social timetabling UNSW timetable planner',
     link: 'https://cotangles.onrender.com/',
-    img: 'https://cotangles.onrender.com/cotangles_logo.png'
+    img: 'https://cotangles.onrender.com/cotangles_logo.png',
+    bg: 'cotangles.png'
   },
 ]
 
@@ -43,7 +47,7 @@ export default function Work() {
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard key={project.id} project={project}/>
           ))}
         </div>
@@ -62,11 +66,19 @@ function ProjectCard({ project }: { project: Project }) {
           group-hover:-translate-y-2 group-hover:shadow-xl
           bg-white flex items-center justify-center"
         >
+
+          <img
+            src={project.bg}
+            className="absolute inset-0 w-full h-full object-cover opacity-75"
+          />
+
+          {/* Foreground logo */}
           <img
             src={project.img}
             alt={project.title}
-            className="w-32 h-32 object-contain"
+            className="relative w-32 h-32 object-contain"
           />
+
         </div>
 
         <h3 className="text-2xl font-medium mt-6 mb-2">
