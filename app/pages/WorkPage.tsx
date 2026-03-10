@@ -72,7 +72,6 @@ function ProjectCard({ project }: { project: Project }) {
             className="absolute inset-0 w-full h-full object-cover opacity-75"
           />
 
-          {/* Foreground logo */}
           <img
             src={project.img}
             alt={project.title}

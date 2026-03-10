@@ -11,7 +11,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="h-screen flex items-center justify-center px-6 pt-16">
+    <div id="hero" className="h-screen flex items-center justify-center px-6 pt-16">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
 
         <div

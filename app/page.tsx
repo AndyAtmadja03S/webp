@@ -1,6 +1,6 @@
 'use client';
 
-import NavBar from "./components/navbar";
+import NavBar from "./components/NavBar";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import HeroPage from "./pages/HeroPage"
