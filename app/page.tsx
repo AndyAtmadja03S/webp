@@ -1,19 +1,19 @@
 'use client';
 
-import NavBar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import HeroPage from "./pages/HeroPage"
 import SkillsPage from "./pages/SkillsPage";
-import WorkPage from "./pages/WorkPage";
+import ProjectPage from "./pages/ProjectPage";
 
 export default function Home() {
   return (
     <div>
-      <NavBar />
+      <Navbar />
       <HeroPage/ >
       <AboutPage/>
-      <WorkPage/ >
+      <ProjectPage/ >
       <SkillsPage />
       <ContactPage />
     </div>

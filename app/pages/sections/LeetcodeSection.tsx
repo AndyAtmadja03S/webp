@@ -116,7 +116,7 @@ export default function LeetcodeSection() {
       <p className="font-bold text-3xl">
         Leetcode
       </p>
-      <div className="relative w-[200px] h-[200px]">
+      <div className="relative w-50 h-50">
         <svg width="200" height="200" viewBox="0 0 200 200">
           <DonutRing
             solved={hard}
