@@ -1,5 +1,5 @@
 import skillCategories from "../data/skills.json"
-import SkillCategory, { type SkillCategory as SkillCategoryType } from "@/app/components/Category"
+import SkillCategory, { type SkillCategory as SkillCategoryType } from "@/app/components/SkillCategory"
 
 export default function Skills() {
   return (
