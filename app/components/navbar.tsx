@@ -1,6 +1,6 @@
 'use client'
 
-export default function NavBar() {
+export default function Navbar() {
   const navItemClass =
     "text-md text-gray-700 hover:text-black transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md z-50"
 

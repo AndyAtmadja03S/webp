@@ -1,6 +1,6 @@
 'use client';
 
-import NavBar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import HeroPage from "./pages/HeroPage"
@@ -10,7 +10,7 @@ import ProjectPage from "./pages/ProjectPage";
 export default function Home() {
   return (
     <div>
-      <NavBar />
+      <Navbar />
       <HeroPage/ >
       <AboutPage/>
       <ProjectPage/ >
