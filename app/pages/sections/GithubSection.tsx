@@ -13,7 +13,7 @@ export default function GitHubSection() {
   const [year, setYear] = useState(currentYear);
 
   return (
-    <div className="w-full max-w-full">
+    <div className="w-full">
       <h2 className="text-3xl font-bold mb-8 text-center md:text-left">
         GitHub Activity
       </h2>
