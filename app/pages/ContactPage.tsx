@@ -8,7 +8,7 @@ interface ContactLink {
 }
 
 const contactLinks: ContactLink[] = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/feed/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andy-atmadja-b05704276/' },
   { label: 'GitHub', href: 'https://github.com/AndyAtmadja03S' },
 ]
 
