@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import projects from "@/app/data/projects.json"
 
 interface Project {
   id: number
@@ -11,32 +12,6 @@ interface Project {
   bg: string
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Spotz',
-    description: 'UNSW Campus Spots Finder',
-    link: 'https://trainee-dragon-25t1.vercel.app/',
-    img: 'https://trainee-dragon-25t1.vercel.app/spotz.svg',
-    bg: '/spotzz.png'
-  },
-  {
-    id: 2,
-    title: 'When2Eat',
-    description: 'Timetable Scheduling for Eats around campus',
-    link: 'https://github.com/AndyAtmadja03S/trainee-giants-25t2',
-    img: '/when2eat.png',
-    bg: '/when2eatf.png'
-  },
-  {
-    id: 3,
-    title: 'Cotangles',
-    description: 'Social timetabling UNSW timetable planner',
-    link: 'https://cotangles.onrender.com/',
-    img: 'https://cotangles.onrender.com/cotangles_logo.png',
-    bg: 'cotangles.png'
-  },
-]
 
 export default function Work() {
   return (
@@ -47,8 +22,8 @@ export default function Work() {
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project}/>
+          {(projects as Project[]).map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>

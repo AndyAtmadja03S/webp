@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Spotz",
+    "description": "UNSW Campus Spots Finder",
+    "link": "https://trainee-dragon-25t1.vercel.app/",
+    "img": "https://trainee-dragon-25t1.vercel.app/spotz.svg",
+    "bg": "/spotzz.png"
+  },
+  {
+    "id": 2,
+    "title": "When2Eat",
+    "description": "Timetable Scheduling for Eats around campus",
+    "link": "https://github.com/AndyAtmadja03S/trainee-giants-25t2",
+    "img": "/when2eat.png",
+    "bg": "/when2eatf.png"
+  },
+  {
+    "id": 3,
+    "title": "Cotangles",
+    "description": "Social timetabling UNSW timetable planner",
+    "link": "https://cotangles.onrender.com/",
+    "img": "https://cotangles.onrender.com/cotangles_logo.png",
+    "bg": "/cotangles.png"
+  }
+]
