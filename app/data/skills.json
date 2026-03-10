@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Languages",
+    "skills": ["C", "Javascript", "Typescript", "Python", "PHP", "HTML5", "CSS3"]
+  },
+  {
+    "title": "Frameworks",
+    "skills": ["Next.js", "React.js", "React Native", "Tailwind CSS", "Slim", "Laravel", "tRPC"]
+  },
+  {
+    "title": "Databases",
+    "skills": ["MySQL", "PostgreSQL", "MongoDB", "Firebase", "Supabase", "Prisma ORM"]
+  },
+  {
+    "title": "Tools & Platforms",
+    "skills": ["Docker", "Git", "Github Actions", "Vercel", "Figma"]
+  }
+]
