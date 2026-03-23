@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Arrow from '../components/icons/ArrowIcon'
+import NowPlaying from '../components/NowPlaying'
 
 const fadeUp = (mounted: boolean, delay: string = '') =>
   `transition-all duration-1000 ${delay} ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`
@@ -41,6 +42,9 @@ export default function Hero() {
             View My Projects
           </button>
         </div>
+      </div>
+      <div className={`mt-6 ${fadeUp(mounted, 'delay-500')}`}>
+        <NowPlaying />
       </div>
 
       <div className={`hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 ${fadeUp(mounted, 'delay-1000')}`}>
