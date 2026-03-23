@@ -45,5 +45,7 @@ export async function GET() {
     artist: song.item?.artists?.map((a: { name: string }) => a.name).join(', '),
     albumArt: song.item?.album?.images[0]?.url,
     songUrl: song.item?.external_urls?.spotify,
+    progressMs: song.progress_ms,
+    durationMs: song.item?.duration_ms,
   });
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 
 type Track = {
@@ -9,23 +9,65 @@ type Track = {
   artist?: string
   albumArt?: string
   songUrl?: string
+  progressMs?: number
+  durationMs?: number
+}
+
+type TrackWithMeta = Track & {
+  lastFetchedAt?: number
+}
+
+function formatTime(ms?: number) {
+  if (!ms) return '0:00'
+  const minutes = Math.floor(ms / 60000)
+  const seconds = Math.floor((ms % 60000) / 1000)
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
 export default function NowPlaying() {
-  const [track, setTrack] = useState<Track | null>(null)
+  const [track, setTrack] = useState<TrackWithMeta | null>(null)
+  const [displayProgress, setDisplayProgress] = useState(0)
+  const trackRef = useRef<TrackWithMeta | null>(null)
 
   useEffect(() => {
-    const fetch = async () => {
+    trackRef.current = track
+  }, [track])
+
+  useEffect(() => {
+    const fetchTrack = async () => {
       const res = await window.fetch('/api/spotify')
       const data = await res.json()
-      setTrack(data)
+
+      setTrack({
+        ...data,
+        lastFetchedAt: Date.now(),
+      })
     }
-    fetch()
-    const interval = setInterval(fetch, 30_000)
+
+    fetchTrack()
+    const interval = setInterval(fetchTrack, 3000)
     return () => clearInterval(interval)
   }, [])
 
-  if (!track?.isPlaying) {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const t = trackRef.current
+
+      if (!t?.isPlaying || !t.progressMs || !t.lastFetchedAt) return
+
+      const elapsed = Date.now() - t.lastFetchedAt
+      const current = t.progressMs + elapsed
+
+      setDisplayProgress(
+        Math.min(current, t.durationMs ?? current)
+      )
+    }, 250)
+
+    return () => clearInterval(interval)
+  }, [])
+  if (!track) return null
+
+  if (!track.isPlaying) {
     return (
       <div className="flex items-center gap-2 text-gray-400 text-sm">
         <SpotifyIcon />
@@ -34,21 +76,54 @@ export default function NowPlaying() {
     )
   }
 
+  const progressPercent = track.durationMs
+    ? (displayProgress / track.durationMs) * 100
+    : 0
+
   return (
-    <a href={track.songUrl} target="_blank" rel="noopener noreferrer"
-      className="flex items-center gap-3 group w-fit">
+    <a
+      href={track.songUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 group w-fit"
+    >
       {track.albumArt && (
-        <Image src={track.albumArt} alt="Album art" width={40} height={40}
-          className="rounded-md shadow-sm" />
+        <Image
+          src={track.albumArt}
+          alt="Album art"
+          width={40}
+          height={40}
+          className="rounded-md shadow-sm"
+        />
       )}
-      <div>
+
+      <div className="w-full max-w-[220px]">
         <p className="text-xs text-green-500 flex items-center gap-1">
           <SpotifyIcon /> Now Playing
         </p>
-        <p className="text-sm font-medium text-gray-800 group-hover:underline truncate max-w-[200px]">
+
+        <p className="text-sm font-medium text-gray-800 group-hover:underline truncate">
           {track.title}
         </p>
-        <p className="text-xs text-gray-500 truncate max-w-[200px]">{track.artist}</p>
+
+        <p className="text-xs text-gray-500 truncate">
+          {track.artist}
+        </p>
+
+        {/* Progress Bar */}
+        <div className="w-full mt-1">
+          <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-green-500 transition-all duration-200"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+
+          <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+            <span>{formatTime(displayProgress)}</span>
+            <span>{formatTime(track.durationMs)}</span>
+          </div>
+        </div>
       </div>
     </a>
   )

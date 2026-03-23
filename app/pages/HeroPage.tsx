@@ -33,19 +33,21 @@ export default function Hero() {
           <p className={`text-xl md:text-2xl lg:text-3xl text-gray-600 mb-12 ${fadeUp(mounted, 'delay-200')}`}>
             Computer Science Student @ UNSW
           </p>
-
-          <button
-            onClick={() => scrollToSection('work')}
-            className={`inline-block px-10 py-4 bg-black text-white rounded-full text-sm cursor-pointer
-              hover:scale-105 ease-[cubic-bezier(0.22,1,0.36,1)] ${fadeUp(mounted, 'delay-700')}`}
-          >
-            View My Projects
-          </button>
+          <div>
+            <button
+              onClick={() => scrollToSection('work')}
+              className={`inline-block px-10 py-4 bg-black text-white rounded-full text-sm cursor-pointer
+                hover:scale-105 ease-[cubic-bezier(0.22,1,0.36,1)] ${fadeUp(mounted, 'delay-700')}`}
+            >
+              View My Projects
+            </button>
+            <div className={`mt-6 ${fadeUp(mounted, 'delay-500')}`}>
+              <NowPlaying />
+            </div>
+          </div>
         </div>
       </div>
-      <div className={`mt-6 ${fadeUp(mounted, 'delay-500')}`}>
-        <NowPlaying />
-      </div>
+      
 
       <div className={`hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 ${fadeUp(mounted, 'delay-1000')}`}>
         <Arrow className="w-6 h-6 text-gray-400" />
