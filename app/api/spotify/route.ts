@@ -28,21 +28,22 @@ export async function GET() {
     cache: 'no-store',
   });
 
+  console.log('Spotify status:', response.status);
+
   if (response.status === 204 || response.status > 400) {
-    return Response.json({ isPlaying: false });
+    return Response.json({ isPlaying: false, debug: `status ${response.status}` });
   }
 
   const song = await response.json();
-
-  if (song.currently_playing_type !== 'track') {
-    return Response.json({ isPlaying: false });
-  }
+  console.log('Spotify response:', JSON.stringify(song, null, 2));
 
   return Response.json({
     isPlaying: song.is_playing,
-    title: song.item.name,
-    artist: song.item.artists.map((a: { name: string }) => a.name).join(', '),
-    albumArt: song.item.album.images[0]?.url,
-    songUrl: song.item.external_urls.spotify,
+    debug_type: song.currently_playing_type,
+    debug_is_playing: song.is_playing,
+    title: song.item?.name,
+    artist: song.item?.artists?.map((a: { name: string }) => a.name).join(', '),
+    albumArt: song.item?.album?.images[0]?.url,
+    songUrl: song.item?.external_urls?.spotify,
   });
 }
