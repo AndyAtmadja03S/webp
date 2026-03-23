@@ -45,7 +45,6 @@ export default function Hero() {
             </button>
 
             <div className="md:w-auto">
-
               <NowPlaying />
             </div>
           </div>
