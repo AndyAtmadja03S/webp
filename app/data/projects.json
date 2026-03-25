@@ -22,5 +22,53 @@
     "link": "https://cotangles.onrender.com/",
     "img": "https://cotangles.onrender.com/cotangles_logo.png",
     "bg": "/cotangles.png"
+  },
+  {
+    "id": 4,
+    "title": "Circles",
+    "description": "UNSW Degree Planner",
+    "link": "https://circles.devsoc.app",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 5,
+    "title": "Repoboard",
+    "description": "Github Leaderboards made fun",
+    "link": "https://devsocflagship-team24-e9s4.vercel.app/",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 6,
+    "title": "Peersuade",
+    "description": "1v1 Realtime Debate Game",
+    "link": "https://politics-game.vercel.app",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 7,
+    "title": "COMP3821 Automatic Timetable Scheduler",
+    "description": "Automatic Timetabling UI",
+    "link": "https://github.com/PandaThe2nd/COMP3821",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 8,
+    "title": "LinkUp",
+    "description": "UNSW social media platform for making friends",
+    "link": "https://github.com/gabriellalianti/link-up",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 9,
+    "title": "Break-it-down",
+    "description": "Just Dance clone using Google Cloud CV API",
+    "link": "https://github.com/tetnaylin/Break-It-Down",
+    "img": "",
+    "bg": ""
   }
 ]
