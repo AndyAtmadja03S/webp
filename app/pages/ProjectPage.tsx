@@ -20,12 +20,19 @@ export default function Project() {
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-12">
           Featured Projects
         </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {(projects as Project[]).map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {(projects as Project[]).map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+          <div className="flex flex-col items-center mt-4">
+            <button
+              className={`px-10 py-4 bg-black text-white rounded-full text-sm cursor-pointer
+                hover:scale-105 ease-[cubic-bezier(0.22,1,0.36,1)] w-[20%]`}
+            >
+              View My Projects
+            </button>
+          </div>
       </div>
     </div>
   )
