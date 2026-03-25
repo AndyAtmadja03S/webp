@@ -2,6 +2,7 @@
 
 import ProjectCard from "@/app/components/ProjectCard"
 import projects from "@/app/data/projects.json"
+import { useRouter } from 'next/navigation'
 
 interface Project {
   id: number
@@ -14,6 +15,8 @@ interface Project {
 
 
 export default function Project() {
+  const router = useRouter()
+
   return (
     <div id="work" className="py-32 px-6 bg-neutral-50">
       <div className="max-w-7xl mx-auto">
@@ -27,6 +30,7 @@ export default function Project() {
           </div>
           <div className="flex flex-col items-center mt-4">
             <button
+              onClick={() => router.push('/projects')}
               className={`px-10 py-4 bg-black text-white rounded-full text-sm cursor-pointer
                 hover:scale-105 ease-[cubic-bezier(0.22,1,0.36,1)] w-[20%]`}
             >
