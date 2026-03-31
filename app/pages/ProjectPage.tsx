@@ -31,8 +31,17 @@ export default function Project() {
           <div className="flex flex-col items-center mt-4">
             <button
               onClick={() => router.push('/projects')}
-              className={`px-10 py-4 bg-black text-white rounded-full text-sm cursor-pointer
-                hover:scale-105 ease-[cubic-bezier(0.22,1,0.36,1)] w-[20%]`}
+              className={`
+                w-full sm:w-auto md:w-[30%] lg:w-[20%]
+                px-6 sm:px-8 md:px-10
+                py-3 sm:py-4
+                bg-black text-white
+                rounded-full text-sm sm:text-base
+                cursor-pointer
+                hover:scale-105
+                transition-transform duration-200
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+              `}
             >
               View My Projects
             </button>
