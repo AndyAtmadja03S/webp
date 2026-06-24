@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Arrow from '../components/icons/ArrowIcon'
 import NowPlaying from '../components/NowPlaying'
 
@@ -30,9 +31,52 @@ export default function Hero() {
             Andy Atmadja
           </h1>
 
-          <p className={`text-xl md:text-2xl lg:text-3xl text-gray-600 mb-12 ${fadeUp(mounted, 'delay-200')}`}>
+          <p className={`text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 ${fadeUp(mounted, 'delay-200')}`}>
             Computer Science Student @ UNSW
           </p>
+
+          <div className={`text-base md:text-lg text-gray-500 mb-12 space-y-2 ${fadeUp(mounted, 'delay-300')}`}>
+            <p className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
+              <Image
+                  src="/edexia-logo.png"
+                  alt="Edexia logo"
+                  width={18}
+                  height={18}
+                  className="rounded-sm"
+              />
+              <span>SWE Intern @</span>
+              <a
+                href="https://edexia.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-gray-700 hover:text-black underline-offset-2 hover:underline transition-colors"
+              >
+                
+                Edexia
+              </a>
+              <span>(YC W25)</span>
+            </p>
+            <p className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
+              <Image
+                  src="/ignotum-logo.png"
+                  alt="Ignotum logo"
+                  width={22}
+                  height={22}
+                  className="rounded-sm"
+              />
+              
+              <span>Founding Engineer @</span>
+              <a
+                href="https://ignotum.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-gray-700 hover:text-black underline-offset-2 hover:underline transition-colors"
+              >
+                Ignotum
+              </a>
+            </p>
+          </div>
+
           <div
             className={`flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6 ${fadeUp(mounted, 'delay-500')}`}
           >
