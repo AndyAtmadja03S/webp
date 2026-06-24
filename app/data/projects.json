@@ -70,5 +70,21 @@
     "link": "https://github.com/tetnaylin/Break-It-Down",
     "img": "",
     "bg": ""
+  },
+  {
+    "id": 10,
+    "title": "Freequencies",
+    "description": "Social media platform with AI sound listener",
+    "link": "https://frequenciess-frontend.vercel.app/",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 11,
+    "title": "Globulo",
+    "description": "AI centered job platform for WHV workers in Australia",
+    "link": "https://www.globulo.app/",
+    "img": "",
+    "bg": ""
   }
 ]
