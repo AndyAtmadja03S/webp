@@ -58,7 +58,7 @@
   {
     "id": 8,
     "title": "LinkUp",
-    "description": "UNSW social media platform for making friends",
+    "description": "UNSW social media platform for making friends ",
     "link": "https://github.com/gabriellalianti/link-up",
     "img": "",
     "bg": ""
@@ -66,8 +66,24 @@
   {
     "id": 9,
     "title": "Break-it-down",
-    "description": "Just Dance clone using Google Cloud CV API",
+    "description": "Just Dance clone using Google Cloud CV API ",
     "link": "https://github.com/tetnaylin/Break-It-Down",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 10,
+    "title": "Freequencies",
+    "description": "Social media platform with AI sound listener",
+    "link": "https://frequenciess-frontend.vercel.app/",
+    "img": "",
+    "bg": ""
+  },
+  {
+    "id": 11,
+    "title": "Globulo",
+    "description": "AI centered job platform for WHV workers in Australia",
+    "link": "https://www.globulo.app/",
     "img": "",
     "bg": ""
   }
